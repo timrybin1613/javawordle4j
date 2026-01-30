@@ -64,7 +64,7 @@ public class WordleGame {
         for (int i = 0; i < word.length(); i++) {
             if (builder.charAt(i) == '-') {
                 if (hiddenWord.contains(Character.toString(word.charAt(i)))) {
-                    builder.replace(i,  i + 1, "^");
+                    builder.replace(i, i + 1, "^");
                 }
             }
         }
@@ -74,7 +74,7 @@ public class WordleGame {
     }
 
     private void updateGameKnowledge(String compareAttemptResult, String word) {
-        for (int i = 0; i < compareAttemptResult.length() ; i++) {
+        for (int i = 0; i < compareAttemptResult.length(); i++) {
             if (compareAttemptResult.charAt(i) == '^') {
                 addRequiredLetter(word.charAt(i));
                 addForbiddenPositionsForLetter(word.charAt(i), i);
@@ -138,7 +138,7 @@ public class WordleGame {
         ArrayList<String> hintData = new ArrayList<>();
         String suggest = suggestWord();
 
-        logger.info("Подсказка: " +  suggest);
+        logger.info("Подсказка: " + suggest);
 
         hintData.add(suggest);
         hintData.add(evaluateAttempt(suggest));
@@ -148,7 +148,7 @@ public class WordleGame {
 
     private void updatePossibleWords() throws GameException {
         possibleWords.removeIf(word -> !isValidSuggestion(word));
-        if (!possibleWords.contains(answer)){
+        if (!possibleWords.contains(answer)) {
             throw new InternalGameException("Внутренняя ошибка. Словарь не содержит загаданное слово");
         }
     }
@@ -182,12 +182,12 @@ public class WordleGame {
     }
 
     private boolean containsAllRequiredLetters(String wordToCheck) {
-       for (Character character : requiredLetters) {
-           if (!wordToCheck.contains(character.toString())) {
-               return false;
-           }
-       }
-       return true;
+        for (Character character : requiredLetters) {
+            if (!wordToCheck.contains(character.toString())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean hasNoLettersOnForbiddenPositions(String wordToCheck) {
@@ -207,7 +207,7 @@ public class WordleGame {
         if (!isCorrectLength(wordToCheck)) {
             throw new InvalidWordLengthException("Слово некорректной длины");
         }
-        if (!isNotUsed(wordToCheck)){
+        if (!isNotUsed(wordToCheck)) {
             throw new WordAlreadyUsedException("Слово уже использовалось");
         }
 
@@ -252,7 +252,7 @@ public class WordleGame {
     }
 
     public void addForbiddenPositionsForLetter(char letter, int position) {
-       forbiddenPositionsByLetter.computeIfAbsent(letter, k -> new HashSet<>()).add(position);
+        forbiddenPositionsByLetter.computeIfAbsent(letter, k -> new HashSet<>()).add(position);
     }
 
     public void addWordUsed(String word) {
