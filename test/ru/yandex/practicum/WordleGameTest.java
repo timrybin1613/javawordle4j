@@ -13,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WordleGameTest {
 
     private WordleGame game;
-    PrintWriterLogger logger;
+    private Logger logger;
 
     @BeforeEach
     void setup() {
+
         logger = new PrintWriterLogger(new PrintWriter(System.out));
 
         WordleDictionary dict = new WordleDictionary(logger);

@@ -4,7 +4,9 @@ import java.util.Map;
 import java.util.*;
 
 public class WordleGame {
-    private PrintWriterLogger logger;
+    public static final int MAX_STEPS = 6;
+    public static final int WORD_LENGTH = 5;
+    private Logger logger;
     private String answer;
     private int steps;
     private int maxWordLength;
@@ -19,11 +21,12 @@ public class WordleGame {
     private boolean gameWin;
     private boolean gameOver;
 
-    WordleGame(WordleDictionary dictionary, PrintWriterLogger logger) {
+
+    WordleGame(WordleDictionary dictionary, Logger logger) {
         this.logger = logger;
         this.random = new Random();
-        this.steps = 6;
-        this.maxWordLength = 5;
+        this.steps = MAX_STEPS;
+        this.maxWordLength = WORD_LENGTH;
         this.dictionary = dictionary;
         this.answer = generateAnswer();
         this.requiredLetters = new HashSet<>();
@@ -149,7 +152,7 @@ public class WordleGame {
     private void updatePossibleWords() throws GameException {
         possibleWords.removeIf(word -> !isValidSuggestion(word));
         if (!possibleWords.contains(answer)) {
-            throw new InternalGameException("Внутренняя ошибка. Словарь не содержит загаданное слово");
+            throw new WordNotFoundInDictionaryException("Словарь не содержит загаданное слово");
         }
     }
 
@@ -165,6 +168,9 @@ public class WordleGame {
     }
 
     private String normalized(String word) {
+        if (word == null || word.isBlank()) {
+            return word;
+        }
         return word.toLowerCase().replace("ё", "е");
     }
 

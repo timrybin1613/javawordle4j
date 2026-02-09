@@ -4,13 +4,13 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class WordleDictionaryLoader {
-    private PrintWriterLogger logger;
+    private Logger logger;
 
-    public WordleDictionaryLoader(PrintWriterLogger logger) {
+    public WordleDictionaryLoader(Logger logger) {
         this.logger = logger;
     }
 
-    public WordleDictionary load(String fileName) {
+    public WordleDictionary load(String fileName) throws DictionaryLoadException {
 
         WordleDictionary wordleDictionary = new WordleDictionary(logger);
         logger.info("Началась загрузка словаря из " + fileName);

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WordleTest {
 
     private Wordle wordle;
-    private PrintWriterLogger logger;
+    private Logger logger;
 
     @BeforeEach
     void setup() {
@@ -32,7 +32,7 @@ class WordleTest {
     }
 
     @Test
-    void loadDictionaryShouldReturnDictionary() {
+    void loadDictionaryShouldReturnDictionary() throws DictionaryLoadException {
         WordleDictionary dict = wordle.loadDictionary(logger);
 
         assertNotNull(dict);

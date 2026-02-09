@@ -7,9 +7,9 @@ import java.util.Random;
 public class WordleDictionary {
     private List<String> words;
     private Random random;
-    private PrintWriterLogger logger;
+    private Logger logger;
 
-    public WordleDictionary(PrintWriterLogger log) {
+    public WordleDictionary(Logger log) {
         this.random = new Random();
         words = new ArrayList<>();
         this.logger = log;

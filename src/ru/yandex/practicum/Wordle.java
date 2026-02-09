@@ -19,7 +19,7 @@ public class Wordle {
         }
     }
 
-    void startGame(PrintWriterLogger logger) {
+    void startGame(Logger logger) throws DictionaryLoadException {
 
         try {
             WordleDictionary dictionary = loadDictionary(logger);
@@ -36,12 +36,12 @@ public class Wordle {
         }
     }
 
-    WordleDictionary loadDictionary(PrintWriterLogger logger) {
+    WordleDictionary loadDictionary(Logger logger) throws DictionaryLoadException {
         WordleDictionaryLoader loader = new WordleDictionaryLoader(logger);
         return loader.load("words_ru.txt");
     }
 
-    void runGameLoop(WordleGame game, PrintWriterLogger logger) {
+    void runGameLoop(WordleGame game, Logger logger) {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Для получения подсказки нажмите Enter \n");
